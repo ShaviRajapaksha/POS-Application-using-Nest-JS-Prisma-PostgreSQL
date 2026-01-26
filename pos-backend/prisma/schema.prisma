@@ -1,5 +1,5 @@
 datasource db {
-  provider = "sqlserver"
+  provider = "postgresql"
 }
 
 generator client {
@@ -20,6 +20,7 @@ model Product {
   price Decimal
   stock Int
   createdAt DateTime @default(now())
+  salesItems SalesItem[] 
 }
 
 model Sale {
