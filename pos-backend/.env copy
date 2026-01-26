@@ -1,1 +1,0 @@
-DATABASE_URL="postgresql://postgres:postgrespassword@localhost:5432/pos_db"
