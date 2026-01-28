@@ -14,7 +14,7 @@ export class CategoriesService {
         data: createCategoryDto,
       })
     } catch (error) {
-        if (error.code == 'P2002'){
+        if (error.code === 'P2002'){
           throw new ConflictException ('Category name already exists')
         }
         throw error;
@@ -55,7 +55,7 @@ export class CategoriesService {
         data: updateCategoryDto,
       });
     } catch (error) {
-      if (error.code == 'P2002') {
+      if (error.code === 'P2002') {
         throw new ConflictException('Category name already exists');
       }
 
