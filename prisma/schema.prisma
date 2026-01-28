@@ -13,9 +13,81 @@ model Product {
   price       Decimal     @db.Decimal(10, 2)
   stock       Int         @default(0)
   sku         String      @unique
+  categoryId  Int?
+  categoryId  Category?   @relation(fieldsL: [categoryId], reference: [id])
+  saleItems   SaleItems[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([categoryId])
+}
+
+model Category {
+  id          Int         @id @default(autoincrement())
+  name        String      @unique
+  descriotion String?
+  product     Product[]
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 }
+
+model Customer {
+  id          Int         @id @default(autoincrement())
+  name        String      
+  email       String?     @unique
+  phone       String?
+  address     String?
+  saleItems   Sale[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Sale {
+  id            Int         @id @default(autoincrement())
+  customerId    Int?
+  customer      Customer?   @relation(fields: [customerId], reference: [id])
+  totalAmount   Decimal     @db.Decimal(10, 2)
+  taxAmount     Decimal     @default(0) @db.Decimal(10, 2)
+  discount      Decimal     @default(0) @db.Decimal(10, 2)
+  finalAmount   Decimal     @db.Decimal(10, 2)
+  paymentMethod String      @default("cash") //cash, card, mobile
+  status        String      @default("completed) //completed, cancelled, refunded
+  saleItems     SaleItems[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([customerId])
+  @@index([createdAt])
+}
+
+model SaleItem {
+  id          Int         @id @default(autoincrement())   
+  saleId      Int
+  saleId      Sale        @relation(fields:[saleId], reference: [id], onDelete: Cascade)  
+  productId   Int
+  product     Product     @relation(fields: [productId], reference: [id])    
+  quantity    Int
+  unitPrice   Decimal     @db.Decimal(10, 2)
+  totalPrice  Decimal     @db.Decimal(10, 2)
+  createdAt   DateTime    @default(now())
+
+  @@index([saleId])
+  @@index([productId])
+}
+
+model User {
+  id          Int         @id @default(autoincrement())
+  username    String      @unique
+  email       String      @unique
+  password    String
+  fullName    String
+  role        String      @default("cashier") //admin, manager, cashier
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+
 
 
 
