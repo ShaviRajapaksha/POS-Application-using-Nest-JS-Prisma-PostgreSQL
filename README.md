@@ -55,7 +55,3 @@ src/
 npx prisma studio  # View & manage data
 npx prisma migrate dev  # Run migrations
 ```
-
-## Contributing
-Contributions are welcome! Please fork and create a pull request.
-
