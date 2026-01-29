@@ -19,9 +19,13 @@ async function bootstrap() {
   // Swagger configuration
   const config = new DocumentBuilder()
     .setTitle('POS API')
-    .setDescription('Point of Sale API documentation')
+    .setDescription('Point of Sale System API Documentation')
     .setVersion('1.0')
     .addTag('products')
+    .addTag('categories')
+    .addTag('customers')
+    .addTag('sales')
+    .addTag('users')
     .build();
   
   const document = SwaggerModule.createDocument(app, config);
