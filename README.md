@@ -4,6 +4,18 @@
 ## Overview
 A Point of Sale (POS) application built with modern backend technologies for efficient transaction management and inventory tracking.
 
+## Complete Architecture
+<table>
+ <tr>
+ <td>
+<img width="513" height="731" alt="Screenshot 2026-01-30 005304" src="https://github.com/user-attachments/assets/3d806dad-5d14-4c98-8ea5-f5ce6c905036" />
+ </td>
+  <td>
+<img width="767" height="702" alt="Screenshot 2026-01-30 010527" src="https://github.com/user-attachments/assets/e5949b93-8804-4aa6-8aa8-656f7a7352b4" />
+ </td>
+ </tr>
+</table>
+
 ## Tech Stack
 - **Framework**: NestJS
 - **ORM**: Prisma
@@ -56,17 +68,7 @@ npx prisma studio  # View & manage data
 npx prisma migrate dev  # Run migrations
 ```
 
-## Complete Architecture
-<table>
- <tr>
- <td>
-<img width="513" height="731" alt="Screenshot 2026-01-30 005304" src="https://github.com/user-attachments/assets/3d806dad-5d14-4c98-8ea5-f5ce6c905036" />
- </td>
-  <td>
-<img width="767" height="702" alt="Screenshot 2026-01-30 010527" src="https://github.com/user-attachments/assets/e5949b93-8804-4aa6-8aa8-656f7a7352b4" />
- </td>
- </tr>
-</table>
+
 
 
 
