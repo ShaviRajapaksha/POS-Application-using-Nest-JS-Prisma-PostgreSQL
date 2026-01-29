@@ -1,19 +1,34 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsNumber, Min } from "class-validator";
+import { IsArray, IsIn, IsInt, IsNumber, IsOptional, IsString, Min, ValidateNested } from "class-validator";
+import { CreateSaleItemDto } from "./create-sale-item.dto";
+import { Type } from "class-transformer";
 
 export class CreateSaleDto {
-    @ApiProperty({ example: '1' })
+    @ApiProperty({ example: 1, required: false })
     @IsInt()
-    productId: number;
+    @IsOptional()
+    customerId?: number;
 
-    @ApiProperty({ example:2 })
-    @IsInt()
-    @Min(1)
-    quantity: number;
-
-    @ApiProperty({ example: 999.9 })
+    @ApiProperty({ example: 0, required: false })
     @IsNumber()
     @Min(0)
-    unitPrice: number;
+    @IsOptional()
+    taxAmount?: number;
 
+    @ApiProperty({ example: 0, required: false })
+    @IsNumber()
+    @Min(0)
+    @IsOptional()
+    discount?: number;
+
+    @ApiProperty({ example: 'cash', enum: ['cash', 'card', 'mobile'] })
+    @IsString()
+    @IsIn([ 'cash', 'card', 'mobile' ])
+    paymentMethod: string;
+
+    @ApiProperty({ type: [CreateSaleItemDto] })
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(()=> CreateSaleItemDto)
+    items: CreateSaleItemDto[];
 }
